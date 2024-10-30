@@ -12,17 +12,26 @@ class HomePage extends StatefulWidget {
 class _homepage extends State<HomePage> {
   String temp = "";
   int percent = 0, total = 0, used = 0;
+  bool is_loading = false;
 
   @override
   void initState() {
     super.initState();
 
-    _updateValues();
-  }
-
-  void _updateValues() {
     _updateTemp();
     _updateStorage();
+  }
+
+  void _updateValues() async{
+    setState(() {
+      is_loading = true;
+    });
+    _updateTemp();
+    _updateStorage();
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      is_loading = false;
+    });
   }
 
   void _updateStorage() async {
@@ -69,7 +78,7 @@ class _homepage extends State<HomePage> {
                   crossAxisCount: 2,
                   children: <Widget>[
                     Image.asset(
-                      'assets/temp.gif',
+                      is_loading ? 'assets/temp.gif' : 'assets/temp2.gif',
                       width: 100,
                     ),
                     Center(
@@ -79,7 +88,7 @@ class _homepage extends State<HomePage> {
                       ),
                     ),
                     Image.asset(
-                      'assets/storage.gif',
+                      is_loading ? 'assets/storage.gif' : 'assets/storage2.gif',
                       width: 100,
                     ),
                     Center(
