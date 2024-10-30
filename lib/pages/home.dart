@@ -28,7 +28,7 @@ class _homepage extends State<HomePage> {
     });
     _updateTemp();
     _updateStorage();
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 4));
     setState(() {
       is_loading = false;
     });

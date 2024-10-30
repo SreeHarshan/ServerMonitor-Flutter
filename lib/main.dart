@@ -7,7 +7,7 @@ import 'package:ServerMon/pages/logs.dart';
 void main() {
   runApp(MaterialApp(
     home: const Main(),
-    theme: ThemeData.dark(),
+    theme: ThemeData.from(colorScheme: const ColorScheme.dark(primary: Colors.blue)),
   ));
 }
 

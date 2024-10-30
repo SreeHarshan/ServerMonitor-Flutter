@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ServerMon/utils/repository.dart' as Repository;
+import 'package:flutter_material_pickers/helpers/show_scroll_picker.dart';
 
 class LogPage extends StatefulWidget {
   const LogPage({super.key});
@@ -28,6 +30,50 @@ class _logpage extends State<LogPage> {
     });
   }
 
+  void _filter_list() {
+    List<String> unique_list = get_unique_dates().reversed.toList();
+    String _selectedItem = unique_list[0];
+    print(unique_list);
+
+    showMaterialScrollPicker<String>(
+        context: context,
+        title: 'Select date',
+        items: unique_list,
+        selectedItem: _selectedItem,
+        headerTextColor: Colors.blue,
+
+        onChanged: (value) {
+          _selectedItem = value;
+          print(value);
+        },
+        onConfirmed: () {
+          print(_selectedItem);
+          List<String> temp = [];
+          for (String line in logs) {
+            if (line.contains(_selectedItem)) {
+              temp.add(line);
+            }
+          }
+          setState(() {
+            logs = temp;
+          });
+        });
+  }
+
+  List<String> get_unique_dates() {
+    if (logs.isEmpty) {
+      return [];
+    }
+    List<String> dates = [];
+    for (String line in logs) {
+      String date = (line.split(" ")[5].substring(0, 10));
+      if (!dates.contains(date)) {
+        dates.add(date);
+      }
+    }
+    return dates;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -54,7 +100,9 @@ class _logpage extends State<LogPage> {
             right: 15,
             bottom: 15,
             child: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                _filter_list();
+              },
               backgroundColor: Colors.blue,
               child: const Icon(Icons.filter_alt),
             ),
