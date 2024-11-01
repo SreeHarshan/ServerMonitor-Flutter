@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-// const String _server_address = "http://harshanpvtserver.duckdns.org:8000";
-const String _server_address = "http://192.168.1.8:8000";
+const String _server_address = "http://harshanpvtserver.duckdns.org:8000";
+// const String _server_address = "http://192.168.1.8:8000";
 
 Future<bool> getHeartBeat() async{
   try {

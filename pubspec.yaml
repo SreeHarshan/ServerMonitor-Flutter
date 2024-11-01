@@ -1,15 +1,15 @@
 name: ServerMon 
 description: "Server Monitor app to check server details"
 publish_to: 'none'
-version: 1.0.0
+version: 1.5.0
 
 environment:
   sdk: ^3.5.3
 
 dependencies:
+  bottom_picker: ^2.8.0
   flutter:
     sdk: flutter
-  flutter_material_pickers: ^3.7.0
   http: ^1.2.2
 
 dev_dependencies:

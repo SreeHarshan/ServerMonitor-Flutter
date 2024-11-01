@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:bottom_picker/bottom_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:ServerMon/utils/repository.dart' as Repository;
-import 'package:flutter_material_pickers/helpers/show_scroll_picker.dart';
 
 class LogPage extends StatefulWidget {
   const LogPage({super.key});
@@ -32,32 +31,31 @@ class _logpage extends State<LogPage> {
 
   void _filter_list() {
     List<String> unique_list = get_unique_dates().reversed.toList();
-    String _selectedItem = unique_list[0];
     print(unique_list);
 
-    showMaterialScrollPicker<String>(
-        context: context,
-        title: 'Select date',
-        items: unique_list,
-        selectedItem: _selectedItem,
-        headerTextColor: Colors.blue,
-
-        onChanged: (value) {
-          _selectedItem = value;
-          print(value);
-        },
-        onConfirmed: () {
-          print(_selectedItem);
-          List<String> temp = [];
-          for (String line in logs) {
-            if (line.contains(_selectedItem)) {
-              temp.add(line);
-            }
+    BottomPicker(
+      items: List.generate(
+          unique_list.length,
+          (int index) => Center(
+                  child: Text(
+                unique_list[index],
+                style: TextStyle(color: Colors.white),
+              ))),
+      pickerTitle: const Text("Select date"),
+      backgroundColor: Colors.black,
+      closeIconColor: Colors.white,
+      onSubmit: (idx) {
+        List<String> temp = [];
+        for (String line in logs) {
+          if (line.contains(unique_list[idx])) {
+            temp.add(line);
           }
-          setState(() {
-            logs = temp;
-          });
+        }
+        setState(() {
+          logs = temp;
         });
+      },
+    ).show(context);
   }
 
   List<String> get_unique_dates() {
