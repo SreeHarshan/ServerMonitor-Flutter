@@ -5,7 +5,7 @@
 * Logs page to view logs and filter them per date
 
 ## Download apk file
-* You can see the latest release of the apk file here (https://github.com/SreeHarshan/ServerMonitor-Flutter/releases)
+* You can see the latest release of the apk file on [releases page](https://github.com/SreeHarshan/ServerMonitor-Flutter/releases)
 
 ## Instructions to build the app
 1. Clone the repository
