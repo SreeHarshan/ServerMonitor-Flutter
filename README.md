@@ -4,6 +4,9 @@
 * Information page to display the server status and other information
 * Logs page to view logs and filter them per date
 
+## Download apk file
+* You can see the latest release of the apk file here (https://github.com/SreeHarshan/ServerMonitor-Flutter/releases)
+
 ## Instructions to build the app
 1. Clone the repository
 ```bash
