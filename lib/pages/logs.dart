@@ -64,7 +64,7 @@ class _logpage extends State<LogPage> {
     }
     List<String> dates = [];
     for (String line in logs) {
-      String date = (line.split(" ")[5].substring(0, 10));
+      String date = (line.split(" ").last.substring(0, 10));
       if (!dates.contains(date)) {
         dates.add(date);
       }

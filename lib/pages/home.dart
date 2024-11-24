@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _homepage extends State<HomePage> {
-  String temp = "";
+  String temp = "",cpu_temp="";
   int percent = 0, total = 0, used = 0;
   bool is_loading = false;
 
